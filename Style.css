@@ -1,0 +1,360 @@
+:root {
+  --primary: #00bcd4;
+  --dark: #101820;
+  --light: #ffffff;
+  --accent: #ffc107;
+  --accent-color: #ffc107;
+  --overlay: linear-gradient(135deg, rgba(0,0,0,0.7), rgba(0,0,0,0.8));
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: #000;
+  color: var(--light);
+  overflow-x: hidden;
+}
+
+.background {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=compress&cs=tinysrgb&dpr=2&h=1200&w=1600');
+  background-size: cover;
+  background-position: center;
+  z-index: -2;
+}
+
+.overlay {
+  background: var(--overlay);
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+header {
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(6px);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.header__logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 1.5rem;
+}
+
+.header__logo img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #fff;
+  padding: 5px;
+}
+
+nav ul {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+}
+
+nav a {
+  color: #ddd;
+  text-decoration: none;
+  font-weight: 500;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+nav a::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background: var(--accent);
+  transition: width 0.3s ease;
+}
+
+nav a:hover,
+nav a.active {
+  color: var(--accent);
+}
+
+nav a:hover::after,
+nav a.active::after {
+  width: 100%;
+}
+
+.btn {
+  background: var(--accent);
+  color: #000;
+  padding: 0.5rem 1rem;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+
+main {
+  max-width: 900px;
+  margin: 5rem auto;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  animation: fadeInUp 1s ease forwards;
+}
+
+main h1 {
+  text-align: center;
+  font-size: 2.8rem;
+  margin-bottom: 2rem;
+  color: var(--accent-color);
+  text-shadow: 0 0 10px rgba(255, 193, 7, 0.5);
+}
+
+.about-text {
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: #e0e0e0;
+  text-align: justify;
+  animation: fadeIn 2s ease-in-out;
+}
+
+.about-text p {
+  margin-bottom: 1.5rem;
+  transition: transform 0.3s ease;
+}
+
+.about-text p:hover {
+  transform: translateX(4px);
+}
+
+.about-text strong {
+  color: var(--accent-color);
+}
+
+footer {
+  text-align: center;
+  padding: 1rem;
+  color: #ccc;
+  margin-top: 3rem;
+  font-size: 0.9rem;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    gap: 0.8rem;
+    text-align: center;
+  }
+
+  nav ul {
+    flex-direction: column;
+  }
+
+  main {
+    margin: 2rem 1rem;
+  }
+}
+:root {
+  --primary-color: #007bff;
+  --secondary-color: #6c757d;
+  --accent-color: #ff9800;
+  --text-color: #222;
+  --overlay-gradient: linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.9));
+}
+
+.main {
+  padding: 4rem 1rem;
+}
+
+.section__title {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+  color: var(--accent-color);
+  text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.courses__list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+  max-width: 1100px;
+  margin: auto;
+}
+
+.course-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  animation: zoomFade 0.8s ease forwards;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+
+.course-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+}
+
+.course-card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+
+.course-card h4 {
+  font-size: 1.25rem;
+  margin: 1rem;
+  color: var(--accent-color);
+}
+
+.course-card p {
+  font-size: 0.95rem;
+  margin: 0 1rem 0.5rem;
+  color: #555;
+}
+
+.course-card .price {
+  font-weight: 700;
+  color: #000;
+  margin: 0 1rem 1rem;
+}
+
+.course-card .btn {
+  margin: 0 1rem 1rem;
+  align-self: flex-start;
+  background: var(--accent-color);
+  color: #000;
+  padding: 0.6rem 1.2rem;
+  border-radius: 30px;
+  font-weight: 600;
+  transition: 0.3s ease;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.course-card .btn:hover {
+  background: #e68a00;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Modern Fade-in Zoom Animation */
+@keyframes zoomFade {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .course-card {
+    margin-bottom: 2rem;
+  }
+}
+.course-card {
+  position: relative;
+  display: block;
+  cursor: pointer;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.course-card .course-radio {
+  display: none;
+}
+
+.course-card .card-content {
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(6px);
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s, box-shadow 0.3s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.course-card:hover .card-content {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.course-card .card-content img {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
+  height: 140px;
+  object-fit: cover;
+}
+
+
+
+/* Tombol beli */
+.course-card .btn {
+  width: 100%;
+  text-align: center;
+  margin-top: auto;
+  font-weight: 600;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.course-card .btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+}
+

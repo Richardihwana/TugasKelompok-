@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Kelas Online - Kursus Populer</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+<style>
+  :root {
+    --primary: #00bcd4;
+    --accent: #ffc107;
+    --text-light: #fff;
+    --overlay-gradient: linear-gradient(135deg, rgba(0,0,0,0.6), rgba(0,0,0,0.85));
+    --card-bg: rgba(255,255,255,0.1);
+    --btn-bg: var(--accent);
+    --btn-hover-bg: #e0a800;
+  }
+  * {
+    margin: 0; padding: 0; box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+  }
+  body {
+    background: url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=compress&cs=tinysrgb&dpr=2&h=1200&w=1600') center/cover no-repeat fixed;
+    color: var(--text-light);
+    overflow-x: hidden;
+    line-height: 1.6;
+  }
+  body::before {
+    content: "";
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: var(--overlay-gradient);
+    z-index: -1;
+  }
+  header {
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(6px);
+    padding: 1rem 2rem;
+    position: sticky; top: 0; z-index: 10;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .logo {
+    display: flex; align-items: center; gap: 10px;
+    color: var(--accent);
+    font-weight: 600; font-size: 1.5rem;
+    text-decoration: none;
+  }
+  .logo img {
+    width: 42px; height: 42px; border-radius: 50%; background: #fff; padding: 6px;
+  }
+  nav ul {
+    list-style: none;
+    display: flex; gap: 1.2rem; align-items: center;
+  }
+  nav a {
+    color: #ddd;
+    font-weight: 500;
+    text-decoration: none;
+    padding: 0.4rem 0.5rem;
+    position: relative;
+    white-space: nowrap;
+    transition: color 0.3s ease;
+  }
+  nav a::after {
+    content: "";
+    position: absolute;
+    bottom: -4px; left: 0;
+    width: 0; height: 2px;
+    background: var(--accent);
+    transition: width 0.3s ease;
+  }
+  nav a:hover, nav a.active {
+    color: var(--accent);
+  }
+  nav a:hover::after, nav a.active::after {
+    width: 100%;
+  }
+  main {
+    max-width: 1100px;
+    margin: 4rem auto 3rem;
+    padding: 0 1rem;
+  }
+  h1.section__title {
+    text-align: center;
+    font-size: 2.8rem;
+    margin-bottom: 3rem;
+    color: var(--accent);
+    text-shadow: 0 0 8px var(--accent);
+  }
+  .courses-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
+    gap: 2.2rem;
+  }
+  .course-card {
+    background: var(--card-bg);
+    border-radius: 16px;
+    box-shadow: 0 6px 14px rgb(0 0 0 / 0.6);
+    display: flex;
+    flex-direction: column;
+    border: 2px solid transparent;
+    transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+    cursor: default;
+  }
+  .course-card:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 14px 32px rgba(0, 188, 212, 0.7);
+    border-color: var(--primary);
+    outline: none;
+  }
+  .course-image {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    filter: brightness(0.8);
+    transition: filter 0.3s ease;
+    border-bottom: 4px solid var(--accent);
+  }
+  .course-card:hover .course-image {
+    filter: brightness(1);
+  }
+  .course-content {
+    padding: 1.3rem 1.6rem 2rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .course-title {
+    font-size: 1.5rem;
+    margin-bottom: 0.8rem;
+    color: var(--primary);
+    font-weight: 700;
+    text-shadow: 0 0 6px var(--primary);
+  }
+  .course-description {
+    font-size: 1rem;
+    color: #ddd;
+    margin-bottom: 1.4rem;
+    flex-grow: 1;
+    line-height: 1.4;
+  }
+  .course-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.95rem;
+    color: #bbb;
+    margin-bottom: 1.4rem;
+  }
+  .course-footer span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .course-footer i {
+    color: var(--accent);
+    font-size: 1.2rem;
+  }
+  .course-price {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--accent);
+    text-shadow: 0 0 5px var(--accent);
+  }
+  .btn-buy {
+    align-self: center;
+    padding: 0.7rem 1.8rem;
+    font-size: 1.1rem;
+    background: var(--btn-bg);
+    border-radius: 35px;
+    font-weight: 700;
+    box-shadow: 0 6px 14px rgba(255, 193, 7, 0.45);
+    color: #000;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    user-select: none;
+    cursor: default;
+    transition: background-color 0.4s ease, transform 0.3s ease, box-shadow 0.4s ease;
+  }
+  .btn-buy:hover {
+    background-color: var(--btn-hover-bg);
+    box-shadow: 0 8px 20px rgba(224, 168, 0, 0.8);
+    color: #fff;
+    transform: scale(1.1);
+  }
+  .btn-buy i {
+    font-size: 1.4rem;
+  }
+  @media (max-width: 600px) {
+    header {
+      padding: 1rem;
+    }
+    nav ul {
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .course-card {
+      max-width: 100%;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <a href="#" class="logo" aria-label="Logo Kelas Online">
+    <img src="https://cdn-icons-png.flaticon.com/512/3075/3075977.png" alt="Logo Kelas Online" />
+    KelasOnline
+  </a>
+  <nav>
+    <ul>
+      <li><a href="index.html">Beranda</a></li>
+      <li><a href="about.html">Tentang</a></li>
+      <li><a href="courses.html" class="active" aria-current="page">Kursus</a></li>
+      <li><a href="kontak.html">Kontak</a></li>
+      <li><a href="login.html">Login</a></li>
+    </ul>
+  </nav>
+</header>
+<main>
+  <h1 class="section__title">Kursus Populer</h1>
+  <div class="courses-grid">
+
+    <article class="course-card" tabindex="0" aria-label="Kursus Pemrograman Python">
+      <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80" alt="Pemrograman Python" class="course-image" />
+      <div class="course-content">
+        <h3 class="course-title">Pemrograman Python</h3>
+        <p class="course-description">Belajar dasar hingga mahir pemrograman Python untuk pengembangan aplikasi dan data science.</p>
+        <div class="course-footer">
+          <span><i class="bi bi-clock"></i> 20 Jam</span>
+          <span><i class="bi bi-people"></i> 1500+ Siswa</span>
+          <span class="course-price">Rp 350.000</span>
+        </div>
+        <button class="btn-buy" aria-label="Beli kelas Pemrograman Python" type="button" disabled>
+          <i class="bi bi-cart-plus"></i> Beli Kelas
+        </button>
+      </div>
+    </article>
+
+    <article class="course-card" tabindex="0" aria-label="Kursus Web Development">
+      <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80" alt="Web Development" class="course-image" />
+      <div class="course-content">
+        <h3 class="course-title">Web Development</h3>
+        <p class="course-description">Belajar membuat website responsif menggunakan HTML, CSS, dan JavaScript.</p>
+        <div class="course-footer">
+          <span><i class="bi bi-clock"></i> 25 Jam</span>
+          <span><i class="bi bi-people"></i> 2000+ Siswa</span>
+          <span class="course-price">Rp 400.000</span>
+        </div>
+        <button class="btn-buy" aria-label="Beli kelas Web Development" type="button" disabled>
+          <i class="bi bi-cart-plus"></i> Beli Kelas
+        </button>
+      </div>
+    </article>
+
+    <article class="course-card" tabindex="0" aria-label="Kursus UI/UX Design">
+      <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=600&q=80" alt="UI/UX Design" class="course-image" />
+      <div class="course-content">
+        <h3 class="course-title">UI/UX Design</h3>
+        <p class="course-description">Mengenal prinsip desain antarmuka dan pengalaman pengguna untuk aplikasi modern.</p>
+        <div class="course-footer">
+          <span><i class="bi bi-clock"></i> 18 Jam</span>
+          <span><i class="bi bi-people"></i> 1200+ Siswa</span>
+          <span class="course-price">Rp 320.000</span>
+        </div>
+        <button class="btn-buy" aria-label="Beli kelas UI/UX Design" type="button" disabled>
+          <i class="bi bi-cart-plus"></i> Beli Kelas
+        </button>
+      </div>
+    </article>
+
+    <article class="course-card" tabindex="0" aria-label="Kursus Machine Learning">
+      <img src="https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&w=600&q=80" alt="Machine Learning" class="course-image" />
+      <div class="course-content">
+        <h3 class="course-title">Machine Learning</h3>
+        <p class="course-description">Pelajari algoritma pembelajaran mesin untuk aplikasi AI dan prediksi data.</p>
+        <div class="course-footer">
+          <span><i class="bi bi-clock"></i> 30 Jam</span>
+          <span><i class="bi bi-people"></i> 900+ Siswa</span>
+          <span class="course-price">Rp 500.000</span>
+        </div>
+        <button class="btn-buy" aria-label="Beli kelas Machine Learning" type="button" disabled>
+          <i class="bi bi-cart-plus"></i> Beli Kelas
+        </button>
+      </div>
+    </article>
+
+    <article class="course-card" tabindex="0" aria-label="Kursus Cybersecurity">
+      <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80" alt="Cybersecurity" class="course-image" />
+      <div class="course-content">
+        <h3 class="course-title">Cybersecurity</h3>
+        <p class="course-description">Dasar-dasar keamanan jaringan dan perlindungan data dari serangan digital.</p>
+        <div class="course-footer">
+          <span><i class="bi bi-clock"></i> 22 Jam</span>
+          <span><i class="bi bi-people"></i> 850+ Siswa</span>
+          <span class="course-price">Rp 450.000</span>
+        </div>
+        <button class="btn-buy" aria-label="Beli kelas Cybersecurity" type="button" disabled>
+          <i class="bi bi-cart-plus"></i> Beli Kelas
+        </button>
+      </div>
+    </article>
+
+    <article class="course-card" tabindex="0" aria-label="Kursus Cloud Computing">
+      <img src="https://images.unsplash.com/photo-1504386106331-3e4e71712b38?auto=format&fit=crop&w=600&q=80" alt="Cloud Computing" class="course-image" />
+      <div class="course-content">
+        <h3 class="course-title">Cloud Computing</h3>
+        <p class="course-description">Memahami layanan cloud dan penerapannya dalam pengelolaan infrastruktur modern.</p>
+        <div class="course-footer">
+          <span><i class="bi bi-clock"></i> 28 Jam</span>
+          <span><i class="bi bi-people"></i> 1100+ Siswa</span>
+          <span class="course-price">Rp 480.000</span>
+        </div>
+        <button class="btn-buy" aria-label="Beli kelas Cloud Computing" type="button" disabled>
+          <i class="bi bi-cart-plus"></i> Beli Kelas
+        </button>
+      </div>
+    </article>
+
+  </div>
+</main>
+</body>
+</html>
